@@ -18,6 +18,7 @@ p {
 h4 {
   font-weight: 600;
   color: #000000;
+  margin-top: 30px;
 }
 h6 span{
   padding: 0 20px;
@@ -31,12 +32,9 @@ h6 span{
 .full-height{
   min-height: 100vh;
 }
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
-display: none;
-}
-.checkbox:checked + label,
-.checkbox:not(:checked) + label{
+
+label,
+label{
   position: relative;
   display: block;
   text-align: center;
@@ -48,8 +46,8 @@ display: none;
   cursor: pointer;
   background-color: #fcfeff;
 }
-.checkbox:checked + label:before,
-.checkbox:not(:checked) + label:before{
+label:before,
+label:before{
   position: absolute;
   display: block;
   width: 36px;
@@ -67,12 +65,22 @@ display: none;
   font-size: 24px;
   transition: all 0.5s ease;
 }
-.checkbox:checked + label:before {
+label:before {
   transform: translateX(44px) rotate(-270deg);
 }
 .card-3d-wrap {
   position: relative;
-  width: 440px;
+  width: 540px;
+  max-width: 100%;
+  height: 530px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  margin-top: 60px;
+}
+.card-2d-wrap {
+  position: relative;
+  width: 540px;
   max-width: 100%;
   height: 400px;
   -webkit-transform-style: preserve-3d;
@@ -99,7 +107,7 @@ display: none;
 .card-back {
   transform: rotateY(180deg);
 }
-.checkbox:checked ~ .card-3d-wrap .card-3d-wrapper {
+.card-3d-wrap .card-3d-wrapper {
   transform: rotateY(180deg);
 }
 .center-wrap{
@@ -121,7 +129,7 @@ display: none;
 .form-style {
   padding: 13px 20px;
   padding-left: 55px;
-  height: 48px;
+  height: 45px;
   width: 100%;
   font-weight: 500;
   border-radius: 4px;
@@ -169,6 +177,7 @@ display: none;
   align-items: center;
   background-color:#000000;
   color: #ffffff;
+  margin-bottom: 10px;
 }
 .btn:hover{  
   background-color: #ffffff;

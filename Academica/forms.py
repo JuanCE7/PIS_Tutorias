@@ -1,27 +1,39 @@
 from django import forms
 from .models import *
 
-class UsuarioForm(forms.ModelForm):
-    class Meta:
-        model = Usuario
-        fields = ['nombre', 'apellido', 'cedula', 'email', 'telefono', 'direccion','password', 'rol']
 
-class TutoriaForm(forms.ModelForm):
+class TutoringForm(forms.ModelForm):
     class Meta:
-        model = Tutoria
-        fields = ['tema', 'fecha_solicitada', 'fecha_planificada', 'estado']
+        model = Tutoring
+        fields = ['theme', 'date_requested', 'planned_date', 'qualification', 'feedback', 'state']
 
-class CicloForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
-        model = Ciclo
-        fields = ['numero', 'paralelo']
+        model = User
+        fields = ['dni','name', 'last_name', 'email', 'password']
 
-class CarreraForm(forms.ModelForm):
+class LoginForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
-        model = Carrera
-        fields = ['nombre']
+        model = User
+        fields = ['email', 'password']
 
-class MateriaForm(forms.ModelForm):
+class SubjectForm(forms.ModelForm):
     class Meta:
-        model = Materia
-        fields = ['nombre', 'docente']
+        model = Subject
+        fields = ['name', 'tutor']
+
+    def __init__(self, *args, **kwargs):
+        super(SubjectForm, self).__init__(*args, **kwargs)
+        self.fields['tutor'].queryset = User.objects.filter(rol='Tutor')
+
+class CycleForm(forms.ModelForm):
+    class Meta:
+        model = Cycle
+        fields = ['number', 'parallel', 'subjects']
+
+class CareerForm(forms.ModelForm):
+    class Meta:
+        model = Career
+        fields = ['name', 'cycles']

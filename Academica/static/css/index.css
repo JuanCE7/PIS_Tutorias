@@ -55,7 +55,7 @@ nav {
 }
 
 .icon {
-   color: #080808;
+   color: #f9f1f1;
 }
 
 .icon:hover {
@@ -64,21 +64,6 @@ nav {
 
 .nav-links li {
    position: relative;
-}
-
-/*Styling Buttons*/
-.login-button {
-   background-color: transparent;
-   border: transparent;
-   padding: 0.6rem 0.8rem;
-   margin-left: 2vw;
-   font-size: 1rem;
-   cursor: pointer;
-   color: #ffffff;
-}
-
-.login-button:hover {
-   color: #000000;
 }
 
 /*Styling Hamburger Icon*/
