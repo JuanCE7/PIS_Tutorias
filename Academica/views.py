@@ -70,11 +70,12 @@ def register(request):
             c.password = datos.get("password")
             if c.save() != True:
                 messages.warning(request, 'Registrado Correctamente')
-                return redirect(register)
+                return redirect(login_view)
     context = {
         'form': f,
     }
     return render(request, "register.html", context)
+
 
 def materia_update(request, pk):
     materia = get_object_or_404(Subject, pk=pk)
@@ -92,8 +93,40 @@ def materia_delete(request, pk):
     if request.method == 'POST':
         materia.delete()
         return redirect('subject')
-    return render(request, 'materia_confirm_delete.html', {'materia': materia})
+    return render(request, 'subject_list.html', {'materia': materia})
 
 
-def tutoring(request):
-    return render(request, "tutoring.html", {'user': user1}) 
+@csrf_protect
+def cycles(request):
+    if request.method == 'POST':
+        form = CycleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cycles')
+    else:
+        form = CycleForm()
+    cycles = Cycle.objects.all()
+    return render(request, "cycles_list.html", {'user': user1, 'cycles': cycles, 'form':form})
+
+@csrf_protect
+def editar_cycle(request, ciclo_id):
+    cycle = get_object_or_404(Cycle, pk=ciclo_id)
+    if request.method == 'POST':
+        form = CycleForm(request.POST, instance=cycle)
+        if form.is_valid():
+            form.save()
+            print('metodoPost')
+            # Redirigir a la página de detalle del ciclo editado con su ID
+            return redirect('editar_cycle', ciclo_id=ciclo_id)
+    else:
+        form = CycleForm(instance=cycle)
+    
+    print('metodo get')
+    return render(request, 'edit_cycle.html', {'form': form, 'cycle':cycle})
+
+def eliminar_cycle(request, ciclo_id):
+    cycle = get_object_or_404(Cycle, pk=ciclo_id)
+    cycle.delete()
+    print('estamos eliminando')
+        #return redirect('cycles')
+    return render(request, 'cycles_list.html', {'cycle': cycle})
