@@ -3,7 +3,42 @@
 {% block title %}Tutorías{% endblock %}
 
 {% block content %}
+<style>
+    /* Estilos básicos para el grid y las cards */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
 
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    .card h3 {
+        margin-top: 10px;
+    }
+
+    .card p {
+        margin-top: 5px;
+    }
+</style>
+<div class="grid">
+    {% for tutor in tutores %}
+    <div class="card">
+        <h3 style="color: black;">{{ tutor.name }}</h3>
+        <h3 style="color: black;">{{ tutor.last_name }}</h3>
+        <h3 style="color: black;">{{ tutor.careers.name }}</h3>
+        <h3 style="color: black;">{{ tutor.cycles.number }}</h3>
+        <h3 style="color: black;">{{ tutor.cycles.parallel }}</h3>
+        <h3 style="color: black;">{{ tutor.subjects.name }}</h3>
+        <a href="{% url 'tutorias_tutor' tutor.id %}"><button>tutoria</button></a>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

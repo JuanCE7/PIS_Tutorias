@@ -13,29 +13,29 @@ class Tutoring(models.Model):
         ('En Espera', 'En Espera'),
     ), default='Pendiente')
 
-    def _str_(self):
+    def __str__(self):
         return "%s %s" % (self.theme, self.date_requested)
     
 class Subject(models.Model):
     name = models.CharField(max_length=50, blank=False)
 
-    def _str_(self):
-        return "%s impartida por %s" % (self.name, self.tutor)
+    def __str__(self):
+        return "%s" % (self.name)
 
 class Cycle(models.Model):
     number = models.CharField(max_length=10, blank=False)
     parallel = models.CharField(max_length=10, blank=False)
     subjects = models.ManyToManyField(Subject)
 
-    def _str_(self):
+    def __str__(self):
         return "%s %s" % (self.number, self.parallel)
 
 class Career(models.Model):
     name = models.CharField(max_length=50, blank=False)
     cycles = models.ManyToManyField(Cycle)
 
-    def _str_(self):
-        return "%s" % self.name
+    def __str__(self):
+        return "%s" % (self.name)
     
 class User(models.Model):
     dni = models.CharField(max_length=10, blank=False)
@@ -50,6 +50,8 @@ class User(models.Model):
     subjects = models.ManyToManyField(Subject, blank = True)
     cycles = models.ManyToManyField(Cycle, blank = True)
     careers = models.ManyToManyField(Career, blank = True)
+    
 
-    def _str_(self):
-        return "%s %s" % (self.name,self.last_name)
+    def __str__(self):
+        return "%s %s" % (self.name, self.last_name)
+

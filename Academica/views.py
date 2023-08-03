@@ -70,12 +70,11 @@ def register(request):
             c.password = datos.get("password")
             if c.save() != True:
                 messages.warning(request, 'Registrado Correctamente')
-                return redirect(login_view)
+                return redirect(register)
     context = {
         'form': f,
     }
     return render(request, "register.html", context)
-
 
 def materia_update(request, pk):
     materia = get_object_or_404(Subject, pk=pk)
@@ -93,7 +92,18 @@ def materia_delete(request, pk):
     if request.method == 'POST':
         materia.delete()
         return redirect('subject')
-    return render(request, 'subject_list.html', {'materia': materia})
+    return render(request, 'materia_confirm_delete.html', {'materia': materia})
+
+
+def tutoring(request):
+    tutores = User.objects.filter(rol='Tutor')
+    return render(request, "tutoring.html", {'user': user1, 'tutores': tutores}) 
+
+
+def tutorias_tutor(request, tutor_id):
+    tutor = User.objects.get(pk=tutor_id)
+    tutorias = Tutoring.objects.filter(user=tutor)
+    return render(request, 'tutorias_tutor.html', {'user': user1,'tutor': tutor, 'tutorias': tutorias})
 
 
 @csrf_protect

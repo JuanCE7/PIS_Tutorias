@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+
+{% block title %}Tutorías{% endblock %}
+
+{% block content %}
+<h1>Tutorías del Tutor: {{ tutor.name }} {{ tutor.last_name }}</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Tema</th>
+            <th>Fecha</th>
+            <!-- Agrega más columnas según los atributos que quieras mostrar en la tabla -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for tutoria in tutorias %}
+        <tr>
+            <td>{{ tutoria.theme }}</td>
+            <td>{{ tutoria.date_requested }}</td>
+            <!-- Agrega más celdas según los atributos que quieras mostrar en la tabla -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
