@@ -10,10 +10,9 @@ urlpatterns = [
     path('admins/', admins, name='admins'),
     path('logout/', logout , name='logout'),
     path('subject/', subject , name='subject'),
-
+    path('tutoring/', tutoring , name='tutoring'),
 
     #path('editSubject/<codigo>', edicionCurso),
     #path('editSubject/', editarCurso),
     #path('deleteSubject/<codigo>', eliminarCurso)
-
 ]

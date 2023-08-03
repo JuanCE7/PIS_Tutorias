@@ -16,23 +16,8 @@ class Tutoring(models.Model):
     def __str__(self):
         return "%s %s" % (self.theme, self.date_requested)
     
-class User(models.Model):
-    dni = models.CharField(max_length=10, blank=False)
-    name = models.CharField(max_length=30, blank=False)
-    last_name = models.CharField(max_length=30, blank=False, default='')
-    email = models.EmailField(max_length=30, blank=False, default='')
-    password = models.CharField(max_length=20, blank=False)
-    rol = models.CharField(max_length=30, choices=(
-        ('Gestor', ("Gestor")), ('Tutor', ("Tutor")),  ('Estudiante', ("Estudiante"))), default='Estudiante')
-    tutorings = models.ManyToManyField(Tutoring,blank=True)
-    state = models.BooleanField(default=False)
-
-    def __str__(self):
-        return "%s %s" % (self.name, self.last_name)
-
 class Subject(models.Model):
     name = models.CharField(max_length=50, blank=False)
-    tutor = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s impartida por %s" % (self.name, self.tutor)
@@ -51,3 +36,21 @@ class Career(models.Model):
 
     def __str__(self):
         return "%s" % self.name
+    
+class User(models.Model):
+    dni = models.CharField(max_length=10, blank=False)
+    name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=30, blank=False, default='')
+    email = models.EmailField(max_length=30, blank=False, default='')
+    password = models.CharField(max_length=20, blank=False)
+    rol = models.CharField(max_length=30, choices=(
+        ('Gestor', ("Gestor")), ('Tutor', ("Tutor")),  ('Estudiante', ("Estudiante"))), default='Estudiante')
+    tutorings = models.ManyToManyField(Tutoring,blank=True)
+    state = models.BooleanField(default=False)
+    subjects = models.ManyToManyField(Subject, blank = True)
+    cycles = models.ManyToManyField(Cycle, blank = True)
+    careers = models.ManyToManyField(Career, blank = True)
+
+    def __str__(self):
+        return "%s %s" % (self.name, self.last_name)
+

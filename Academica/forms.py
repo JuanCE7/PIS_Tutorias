@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 
-
 class TutoringForm(forms.ModelForm):
     class Meta:
         model = Tutoring
@@ -22,11 +21,7 @@ class LoginForm(forms.ModelForm):
 class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject
-        fields = ['name', 'tutor']
-
-    def __init__(self, *args, **kwargs):
-        super(SubjectForm, self).__init__(*args, **kwargs)
-        self.fields['tutor'].queryset = User.objects.filter(rol='Tutor')
+        fields = ['name']
 
 class CycleForm(forms.ModelForm):
     class Meta:

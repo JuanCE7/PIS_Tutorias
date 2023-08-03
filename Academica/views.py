@@ -70,12 +70,11 @@ def register(request):
             c.password = datos.get("password")
             if c.save() != True:
                 messages.warning(request, 'Registrado Correctamente')
-                return redirect(login_view)
+                return redirect(register)
     context = {
         'form': f,
     }
     return render(request, "register.html", context)
-
 
 def materia_update(request, pk):
     materia = get_object_or_404(Subject, pk=pk)
@@ -94,3 +93,7 @@ def materia_delete(request, pk):
         materia.delete()
         return redirect('subject')
     return render(request, 'materia_confirm_delete.html', {'materia': materia})
+
+
+def tutoring(request):
+    return render(request, "tutoring.html", {'user': user1}) 

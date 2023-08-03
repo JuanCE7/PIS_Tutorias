@@ -15,32 +15,34 @@
                             <div class="center-wrap">
                                 <div class="section text-center">
                                     <h4 class="mb-3 pb-3">Registro</h4>
-                                    <div class="form-group">
-                                        <input type="email" class="form-style" placeholder="Nombre"
-                                            for="{{ form.name }}">
-                                        <i class="input-icon uil uil-user" style="color: #000000b7;"></i>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-style" placeholder="Apellido"
-                                            for="{{ form.last_name }}">
-                                        <i class="input-icon uil uil-user" style="color: #000000b7;"></i>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-style" placeholder="Cédula"
-                                            for="{{ form.dni }}">
-                                        <i class="input-icon uil uil-user" style="color: #000000b7;"></i>
-                                    </div>
-                                    <div class="form-group">
-                                        <i class="input-icon uil uil-at" style="color: #000000b7;"></i>
-                                        <input type="email" class="form-style" placeholder="Email"
-                                            for="{{ form.email }}">
-                                    </div>
-                                    <div class="form-group ">
-                                        <input type="password" class="form-style" placeholder="Contraseña"
-                                            for="{{ form.password }}">
-                                        <i class="input-icon uil uil-lock-alt" style="color: #000000b7;"></i>
-                                    </div>
-                                    <input class="btn mt-4" type="submit" value="Registrar">
+                                    <form action="{% url 'register' %}" method="POST">{% csrf_token %}
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" placeholder="Nombre"
+                                                for="{{ form.name }}">
+                                            <i class="input-icon uil uil-user" style="color: #000000b7;"></i>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" placeholder="Apellido"
+                                                for="{{ form.last_name }}">
+                                            <i class="input-icon uil uil-user" style="color: #000000b7;"></i>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" placeholder="Cédula"
+                                                for="{{ form.dni }}">
+                                            <i class="input-icon uil uil-user" style="color: #000000b7;"></i>
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="input-icon uil uil-at" style="color: #000000b7;"></i>
+                                            <input type="email" class="form-style" placeholder="Email"
+                                                for="{{ form.email }}">
+                                        </div>
+                                        <div class="form-group ">
+                                            <input type="password" class="form-style" placeholder="Contraseña"
+                                                for="{{ form.password }}">
+                                            <i class="input-icon uil uil-lock-alt" style="color: #000000b7;"></i>
+                                        </div>
+                                        <input class="btn mt-4" type="submit" value="Registrar">
+                                    </form>
                                 </div>
                             </div>
                         </div>

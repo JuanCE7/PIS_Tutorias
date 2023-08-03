@@ -30,7 +30,7 @@
             <li><a href="{% url 'index' %}">Informacion</a></li>
             {% if user.state %}
             {% if user.rol == 'Estudiante' %}
-            <li><a href="{% url 'index' %}">Tutorías</a></li>
+            <li><a href="{% url 'tutoring' %}">Tutorías</a></li>
             {% elif user.rol == 'Tutor' %}
             <li><a href="{% url 'index' %}">Panel de Tutor</a></li>
             {% elif user.rol == 'Gestor' %}
