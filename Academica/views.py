@@ -76,23 +76,22 @@ def register(request):
     }
     return render(request, "register.html", context)
 
-def materia_update(request, pk):
-    materia = get_object_or_404(Subject, pk=pk)
+def materia_update(request, subject_id):
+    materia = get_object_or_404(Subject, pk=subject_id)
     if request.method == 'POST':
         form = SubjectForm(request.POST, instance=materia)
         if form.is_valid():
             form.save()
-            return redirect('subject')
+            return redirect('materia_update', subject_id=subject_id)
     else:
         form = SubjectForm(instance=materia)
-    return render(request, 'subject_list.html', {'form': form})
+    return render(request, 'edit_materia.html', {'form': form, 'materia':materia})
 
-def materia_delete(request, pk):
-    materia = get_object_or_404(Subject, pk=pk)
-    if request.method == 'POST':
-        materia.delete()
-        return redirect('subject')
-    return render(request, 'materia_confirm_delete.html', {'materia': materia})
+def materia_delete(request, subject_id):
+    materia = get_object_or_404(Subject, pk=subject_id)
+    materia.delete()
+    return redirect('subject')
+    #return render(request, 'materia_confirm_delete.html', {'materia': materia})
 
 
 def tutoring(request):

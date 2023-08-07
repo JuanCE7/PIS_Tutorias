@@ -47,8 +47,8 @@
                     <td>{{forloop.counter}}</td>
                     <td>{{c.name}}</td>
                     <td>{{c.tutor}}</td>
-                    <td><a href="edicionCurso/{{c.codigo}}" class="btn btn-info">Editar</a></td>
-                    <td><a href="eliminarCurso/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                    <td><a href="{%url 'materia_update' c.id %}" class="btn btn-info">Editar</a></td>
+                    <td><a href="{%url 'materia_delete' c.id %}" class="btn btn-info">Borrar</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
